@@ -1,0 +1,144 @@
+<?php
+if (isset($response) && $response['status'] === 'success') {
+    $contact = &$response['result'];
+}
+else {
+    $contact = &$input;
+}
+?>
+
+<span>Hostaway test task</span>
+<span style="float: right"><a href="/">Home</a></span>
+<hr>
+
+<?php if (isset($request)): ?>
+<p>
+  <a data-toggle="collapse" href="#json" role="button" aria-expanded="false" aria-controls="json">
+    Show JSON
+  </a>
+</p>
+<div class="collapse" id="json">
+	<pre class="bg-info text-white small">Request: <?= $request ?><br><br><?= $json ?></pre>
+</div>
+<?php endif ?>
+
+<?php if (isset($response['messages'])): ?>
+	<p class="text-danger">
+	<?php echo implode('<br>', $response['messages']); ?>
+	</p>
+<?php endif ?>
+
+<?php echo $this->tag->form(''); ?>
+<table class="table table-hover table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th>Field</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+        <?php if (isset($contact['id'])): ?>
+		<tr>
+			<td>id</td>
+			<td>
+				<?php echo $contact['id'] ?>
+			</td>
+		</tr>
+        <?php endif ?>
+		<tr>
+			<td>First name</td>
+			<td>
+				<?php
+					echo $this->tag->textField(
+						[
+							'id' => 'firstName',
+							'name' => 'contact[firstName]',
+							'value' => $contact['firstName'] ?? NULL,
+							'class' => 'form-control'
+						]
+					);
+				?>
+			</td>
+		</tr>
+		<tr>
+			<td>Last name</td>
+			<td>
+				<?php
+					echo $this->tag->textField(
+						[
+							'id' => 'lastName',
+							'name' => 'contact[lastName]',
+							'value' => $contact['lastName'] ?? NULL,
+							'class' => 'form-control'
+						]
+					);
+				?>
+			</td>
+		</tr>
+		<tr>
+			<td>Phone number</td>
+			<td>
+				<?php
+					echo $this->tag->textField(
+						[
+							'id' => 'phoneNumber',
+							'name' => 'contact[phoneNumber]',
+							'value' => $contact['phoneNumber'] ?? NULL,
+							'class' => 'form-control'
+						]
+					);
+				?>
+			</td>
+		</tr>
+		<tr>
+			<td>Country code</td>
+			<td>
+				<?php
+					echo $this->tag->textField(
+						[
+							'id' => 'countryCode',
+							'name' => 'contact[countryCode]',
+							'value' => $contact['countryCode'] ?? NULL,
+							'class' => 'form-control'
+						]
+					);
+				?>
+			</td>
+		</tr>
+		<tr>
+			<td>Timezone name</td>
+			<td>
+				<?php
+					echo $this->tag->textField(
+						[
+							'id' => 'timezoneName',
+							'name' => 'contact[timezoneName]',
+							'value' => $contact['timezoneName'] ?? NULL,
+							'class' => 'form-control'
+						]
+					);
+				?>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<?php if (isset($response) && $response['status'] === 'success'): ?>
+    <div class="text-success text-center">
+        SUCCESS
+    </div>
+<?php else: ?>
+
+<p>
+    <?php
+		echo $this->tag->submitButton(
+			[
+				'value' => 'CREATE',
+				'class' => 'form-control btn btn-outline-primary'
+			]
+		);
+	?>
+</p>
+<?php endif ?>
+
+<?php echo $this->tag->endForm(''); ?>

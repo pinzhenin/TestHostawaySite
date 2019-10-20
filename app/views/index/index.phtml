@@ -1,0 +1,58 @@
+<span>Hostaway test task</span>
+<span style="float: right"><a href="/">Home</a></span>
+<hr>
+
+<table class="table table-bordered table-hover">
+	<caption style="caption-side: top">RESTful API to store, retrieve, delete, update phone book items</caption>
+	<thead class="thead-light">
+		<tr>
+			<th>Method</th>
+			<th>URL</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="4">Retrieve</td>
+		</tr>
+		<tr>
+			<td><code class="highlighter-rouge">GET</code></td>
+			<td>/api/contacts</td>
+			<td><a href="/index/list">Retrieves all contacts</a></td>
+		</tr>
+		<tr>
+			<td><code class="highlighter-rouge">GET</code></td>
+			<td>/api/contacts/search/Alex</td>
+			<td><a href="/index/search?name=Alex">Searches for contacts with ‘Alex’ in their name</a></td>
+		</tr>
+		<tr>
+			<td><code class="highlighter-rouge">GET</code></td>
+			<td>/api/contacts/2</td>
+			<td><a href="/index/read?id=2">Retrieves contacts based on primary key</a></td>
+		</tr>
+		<tr>
+			<td colspan="4">Store</td>
+		</tr>
+		<tr>
+			<td><code class="highlighter-rouge">POST</code></td>
+			<td>/api/contacts</td>
+			<td><a href="/index/create">Adds a new contact</a></td>
+		</tr>
+		<tr>
+			<td colspan="4">Update</td>
+		</tr>
+		<tr>
+			<td><code class="highlighter-rouge">PUT</code></td>
+			<td>/api/contacts/3</td>
+			<td><a href="/index/update?id=3">Updates contacts based on primary key</a></td>
+		</tr>
+		<tr>
+			<td colspan="4">Delete</td>
+		</tr>
+		<tr>
+			<td><code class="highlighter-rouge">DELETE</code></td>
+			<td>/api/contacts/5</td>
+			<td><a href="/index/delete?id=5">Deletes contacts based on primary key</a></td>
+		</tr>
+	</tbody>
+</table>

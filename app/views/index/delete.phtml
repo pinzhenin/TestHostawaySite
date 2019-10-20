@@ -1,0 +1,31 @@
+<span>Hostaway test task</span>
+<span style="float: right"><a href="/">Home</a></span>
+<hr>
+
+<p>
+  <a data-toggle="collapse" href="#json" role="button" aria-expanded="false" aria-controls="json">
+    Show JSON
+  </a>
+</p>
+<div class="collapse" id="json">
+	<pre class="bg-info text-white small">Request: <?= $request ?><br><br><?= $json ?></pre>
+</div>
+
+<?php
+if ($response['status'] === 'success') {
+    $textClass = 'text-success';
+}
+else {
+    $textClass = 'text-danger';
+}
+?>
+
+<p class="<?= $textClass ?> text-center">
+    <?= mb_strtoupper($response['status']) ?>
+</p>
+
+<?php if (isset($response['messages'])): ?>
+<p class="text-danger">
+<?php echo implode('<br>', $response['messages']); ?>
+</p>
+<?php endif ?>

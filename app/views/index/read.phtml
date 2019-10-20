@@ -1,0 +1,62 @@
+<span>Hostaway test task</span>
+<span style="float: right"><a href="/">Home</a></span>
+<hr>
+
+<p>
+  <a data-toggle="collapse" href="#json" role="button" aria-expanded="false" aria-controls="json">
+    Show JSON
+  </a>
+</p>
+<div class="collapse" id="json">
+	<pre class="bg-info text-white small">Request: <?= $request ?><br><br><?= $json ?></pre>
+</div>
+
+<?php
+if ($response['status'] !== 'success') {
+	echo $response['status'];
+	return;
+}
+$contact = &$response['result'];
+?>
+
+<table class="table table-hover table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th>Field</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tfoot>
+	<td colspan="2" class="text-right">
+			<a href="create">create</a> |
+			<a href="update?id=<?= $contact['id'] ?>">update</a> |
+			<a href="delete?id=<?= $contact['id'] ?>">delete</a>
+		</td>
+	</tfoot>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td><?= $contact['id'] ?></td>
+		</tr>
+		<tr>
+			<td>First name</td>
+			<td><?= $contact['firstName'] ?></td>
+		</tr>
+		<tr>
+			<td>Last name</td>
+			<td><?= $contact['lastName'] ?></td>
+		</tr>
+		<tr>
+			<td>Phone number</td>
+			<td><?= $contact['phoneNumber'] ?></td>
+		</tr>
+		<tr>
+			<td>Country code</td>
+			<td><?= $contact['countryCode'] ?></td>
+		</tr>
+		<tr>
+			<td>Timezone name</td>
+			<td><?= $contact['timezoneName'] ?></td>
+		</tr>
+	</tbody>
+</table>

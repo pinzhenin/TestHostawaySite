@@ -1,0 +1,77 @@
+<span>Hostaway test task</span>
+<span style="float: right"><a href="/">Home</a></span>
+<hr>
+
+<p>
+  <a data-toggle="collapse" href="#json" role="button" aria-expanded="false" aria-controls="json">
+    Show JSON
+  </a>
+</p>
+<div class="collapse" id="json">
+	<pre class="bg-info text-white small">Request: <?= $request ?><br><br><?= $json ?></pre>
+</div>
+
+<?php
+if ($response['status'] !== 'success') {
+	echo $response['status'];
+	return;
+}
+$contacts = &$response['result'];
+?>
+
+<?php echo $this->tag->form(['index/search','method'=>'get']); ?>
+<div class="input-group">
+<?php
+    echo $this->tag->textField(
+        [
+            'id' => 'name',
+            'name' => 'name',
+            'value' => $input['name'] ?? NULL,
+            'class' => 'form-control'
+        ]
+    );
+?>
+    <div class="input-group-append">
+    <?php
+		echo $this->tag->submitButton(
+			[
+				'value' => 'FIND',
+				'class' => 'form-control btn btn-outline-primary'
+			]
+		);
+	?>
+    </div>
+</div>
+<?php echo $this->tag->endForm(''); ?>
+<hr>
+
+<table class="table table-hover table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th>id</th>
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Phone number</th>
+			<th>Country code</th>
+			<th>Timezone name</th>
+			<th class="text-center">action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach( $contacts as $contact ): ?>
+		<tr>
+			<td><?= $contact['id'] ?></td>
+			<td><?= $contact['firstName'] ?></td>
+			<td><?= $contact['lastName'] ?></td>
+			<td><?= $contact['phoneNumber'] ?></td>
+			<td><?= $contact['countryCode'] ?></td>
+			<td><?= $contact['timezoneName'] ?></td>
+			<td class="bg-light text-center">
+				<a href="read?id=<?= $contact['id'] ?>">read</a> |
+				<a href="update?id=<?= $contact['id'] ?>">update</a> |
+				<a href="delete?id=<?= $contact['id'] ?>">delete</a>
+			</td>
+		</tr>
+		<?php endforeach ?>
+	</tbody>
+</table>
